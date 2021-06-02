@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+    <title>Encode URL</title>
+    <style>
+        .heading {
+            margin-top: 30px;
+            text-transform: uppercase;
+            font-weight: 200;
+            letter-spacing: 3px;
+        }
+
+        .desc {
+            margin-top: 10px;
+            font-size: 15px;
+            text-transform: uppercase;
+            color: rgb(110, 110, 110);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container text-center">
+        <h1 class="heading">Metly URL Encoder</h1>
+        <h4 class="desc">Shorten your Large URls Here !</h4>
+
+        <!-- FORM TO GET THE NEW URL -->
+        <div class="my-4">
+            <form action="/shortUrls" method="POST" class="form-inline">
+                <label for="fullUrl" class="sr-only">URL</label>
+                <input required placeholder="URL" type="url" name="fullUrl" id="fullUrl"
+                    class="mr-2 form-control col" />
+                <button type="submit" class="btn btn-primary">Encode</button>
+        </div>
+        </form>
+
+        <!-- This table will show all the URLs shorted till now -->
+        <table class="table table-striped table-responsive mytb">
+            <thead class="table-primary">
+                <tr>
+                    <th>Full Url</th>
+                    <th>Short Url</th>
+                    <th>Clicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% allUrls.forEach(url=>{ %>
+                    <tr>
+                        <td><a href="<%= url.full %>">
+                                <%= url.full%>
+                            </a></td>
+                        <td><a href="<%= url.short %>">
+                                <%= url.short%>
+                            </a></td>
+                        <td>
+                            <%= url.clicks%>
+                        </td>
+                    </tr>
+                    <% } )%>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
